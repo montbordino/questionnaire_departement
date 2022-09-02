@@ -131,6 +131,8 @@ input.addEventListener('input', testDep);
 
 // verifie si le contenant de l'input correspond à un département existant
 function testDep(e) {
+    // normalize sépare les lettres de leurs accent é => e + '
+    // replace(/\p{Diacritic}/gu supprime tous les accents isolés)
     let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/ /ig, "-").toLowerCase()
     Object.keys(dict_dep).every(dep => {
 
