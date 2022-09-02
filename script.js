@@ -133,8 +133,8 @@ input.addEventListener('input', testDep);
 function testDep(e) {
     let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/ /ig, "-").toLowerCase()
     Object.keys(dict_dep).every(dep => {
-        if (chaine == dep.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, "")){
-            console.log(dep)
+
+        if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
             document.getElementById(dep).setAttribute("class", "show")
             dep_trouve += 1
             input.value = ""
