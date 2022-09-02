@@ -7,8 +7,8 @@ La carte interactive est faite grace à des SVG qui ont été pris sur le site [
 - V0 : premier commit
 - V1 : compteur de départements restants
 - V2 : recherche plus flexible (majuscules, accents, tirets de séparation...)
-- V3 : victoire en fin de partie
-- V4 : amélioration visuelle du site
+- V3 : amélioration visuelle du site
+- V4 : victoire en fin de partie
 - V5 : minuteur pour le quizz
 - V6 : rajout des régions
 - V7 : affichage des départements déjà complétés sous forme de tableau
