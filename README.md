@@ -1,7 +1,10 @@
 ## but du site
-Ce site a pour seul but de m'exercer en java script. L'idée du site n'est pas originale puisqu'il reprend le format du site [jetPunk](https://www.jetpunk.com/fr) qui est un site proposant différents quizz.
+Ce site a pour seul but de m'exercer en java script. 
+L'idée du site n'est pas originale puisqu'il reprend le format du site [jetPunk](https://www.jetpunk.com/fr) qui est un site proposant différents quizz. 
+La carte interactive est faite grace à des SVG qui ont été pris sur le site [AMCHART](https://www.amcharts.com/svg-maps/) puis légerement modifiés pour facilier leur utilisation. 
 
 ## Améliorations possibles
+- V0 : premier commit
 - V1 : compteur de départements restants
 - V2 : recherche plus flexible (majuscules, accents, tirets de séparation...)
 - V3 : victoire en fin de partie
@@ -9,4 +12,4 @@ Ce site a pour seul but de m'exercer en java script. L'idée du site n'est pas o
 - V5 : minuteur pour le quizz
 - V6 : rajout des régions
 - V7 : affichage des départements déjà complétés sous forme de tableau
-- V++ : potentiellements d'autres versions avec des quizz pour retenir qu'une partie des départements ou les numéros.
+- V++ : potentiellement des quizz pour une partie des départements ou pour les numéros.
