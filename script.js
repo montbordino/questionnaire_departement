@@ -43,7 +43,7 @@ let dict_dep = {
     "Indre-et-Loire": 37,
     "Isère": 38,
     "Jura": 39,
-    "hidees": 40,
+    "Landes": 40,
     "Loir-et-Cher": 41,
     "Loire": 42,
     "Haute-Loire": 43,
@@ -131,11 +131,17 @@ input.addEventListener('input', testDep);
 
 // verifie si le contenant de l'input correspond à un département existant
 function testDep(e) {
-  if(e.target.value in dict_dep){
-    document.getElementById(e.target.value).className.baseVal = "show"
-    dep_trouve += 1
-    input.value = ""
-    majCompteur()
-  }
+    let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/ /ig, "-").toLowerCase()
+    Object.keys(dict_dep).every(dep => {
+        if (chaine == dep.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, "")){
+            console.log(dep)
+            document.getElementById(dep).setAttribute("class", "show")
+            dep_trouve += 1
+            input.value = ""
+            majCompteur()
+            return false
+        }
+        return true
+    })
 }
 
