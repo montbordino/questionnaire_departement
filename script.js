@@ -1,6 +1,7 @@
 const map = document.querySelector("#carte")
 var departements = map.querySelectorAll("path")
-const input = document.querySelector('input');
+const input = document.querySelector('input')
+// dict_dep est créer dans le but de relier les numéros de département à leur noms
 let dict_dep = {
     "Ain": 1,
     "Aisne": 2,
@@ -99,22 +100,22 @@ let dict_dep = {
     "Val-de-Marne": 94,
     "Val-d'Oise": 95
 }
-//let i = 1
 
+//variables utilisés pour le conteur de la V1
+let dep_trouve = 0
+const dep_max = Object.keys(dict_dep).length
+
+function majCompteur() {
+    document.getElementById("compteur").innerHTML = "départements trouvés : " + dep_trouve + " / " + dep_max
+}
+
+// parcours de chaque départements (paths) pour afficher le nom des departements trouvés survolés avec la souris
 departements.forEach(function(path) {
-    /* pour créer dict_dep
-    if (path.id == "Corse-du-Sud"){
-        dict_dep[path.id] = "2A"     
-    }
-    else if (path.id == "Haute-Corse"){
-        dict_dep[path.id] = "2B" 
-        i = 21  
-    }
-    else {
-        dict_dep[path.id] = i
-        i+=1
-    }
-    */
+    /* pour créer dict_dep (prérequis : création de i à 1)
+    if (path.id == "Corse-du-Sud"){ dict_dep[path.id] = "2A" }
+    else if (path.id == "Haute-Corse"){ dict_dep[path.id] = "2B"; i = 21; }
+    else { dict_dep[path.id] = i; i += 1; }*/
+
     path.addEventListener('mouseleave', function() {
         document.getElementById("nom").innerHTML = ""
     })
@@ -125,11 +126,16 @@ departements.forEach(function(path) {
     })
 });
 
+majCompteur()
 input.addEventListener('input', testDep);
 
+// verifie si le contenant de l'input correspond à un département existant
 function testDep(e) {
   if(e.target.value in dict_dep){
     document.getElementById(e.target.value).className.baseVal = "show"
+    dep_trouve += 1
     input.value = ""
+    majCompteur()
   }
 }
+
