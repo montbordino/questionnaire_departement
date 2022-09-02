@@ -1,0 +1,13 @@
+.map {
+    background-color: rgb(65, 65, 243);
+    padding: 10px;
+}
+
+.map path{
+    fill: orange;
+    stroke: black;
+}
+
+.map .show{
+    fill: green;
+}
