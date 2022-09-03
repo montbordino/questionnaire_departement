@@ -1,6 +1,9 @@
 const map = document.querySelector("#carte")
 var departements = map.querySelectorAll("path")
 const input = document.querySelector('input')
+
+var zoom = false
+
 // dict_dep est créé dans le but de relier les numéros de département à leur noms
 let dict_dep = {
     "Ain": 1,
@@ -120,7 +123,7 @@ departements.forEach(function(path) {
         document.getElementById("nom").innerHTML = ""
     })
     path.addEventListener('mouseenter', function() {
-        if (path.className.baseVal == "show"){
+        if (path.getAttribute("class") == "show"){
             document.getElementById("nom").innerHTML = path.id
         }
     })
@@ -131,10 +134,18 @@ majCompteur()
 input.addEventListener('input', testDep);
 
 map.addEventListener('mousedown', e =>{
-    var map_pos = e.target.getBoundingClientRect() // stock les informations de positionnement de la carte
-    var coordX = e.clientX - map_pos.left // coord X de la souris relativement à la carte
-    var coordY = e.clientY - map_pos.top // coord Y de la souris relativement à la carte
-    console.log("X : " + coordX + " | Y : " + coordY)
+    if (zoom){
+        map.setAttribute("viewBox", "0 0 614 586")
+        zoom = false
+    }
+    else{
+        var map_pos = e.target.getBoundingClientRect() // stock les informations de positionnement de la carte
+        var coordX = e.clientX - map_pos.left // coord X de la souris relativement à la carte
+        var coordY = e.clientY - map_pos.top // coord Y de la souris relativement à la carte
+        var newVB = (coordX - 150).toString().concat(" ", coordY - 150).concat(" ", coordX + 150).concat(" ", coordY + 150)
+        map.setAttribute("viewBox", newVB)
+        zoom = true
+    }
 })
 
 /* ---------------- verifie si le contenant de l'input correspond à un département existant --------------- */
