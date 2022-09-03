@@ -52,8 +52,8 @@ input
 /* -------------------------------------------------------------------------- */
 
 #map-container{
-    width: 614px;
-    height:586px;
+    width:  614px;
+    height: 586px;
     overflow: hidden;
 }
 

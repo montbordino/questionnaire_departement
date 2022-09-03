@@ -133,9 +133,9 @@ input.addEventListener('input', testDep);
 function testDep(e) {
     // normalize sépare les lettres de leurs accent é => e + '
     // replace(/\p{Diacritic}/gu supprime tous les accents isolés)
-    let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/ /ig, "-").toLowerCase()
+    let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/-/ig, " ").toLowerCase()
     Object.keys(dict_dep).every(dep => {
-        if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
+        if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/-/ig, " ").replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
             document.getElementById(dep).setAttribute("class", "show")
             dep_trouve += 1
             input.value = ""
