@@ -124,10 +124,18 @@ departements.forEach(function(path) {
             document.getElementById("nom").innerHTML = path.id
         }
     })
+
 });
 
 majCompteur()
 input.addEventListener('input', testDep);
+
+map.addEventListener('mousedown', e =>{
+    var map_pos = e.target.getBoundingClientRect() // stock les informations de positionnement de la carte
+    var coordX = e.clientX - map_pos.left // coord X de la souris relativement à la carte
+    var coordY = e.clientY - map_pos.top // coord Y de la souris relativement à la carte
+    console.log("X : " + coordX + " | Y : " + coordY)
+})
 
 /* ---------------- verifie si le contenant de l'input correspond à un département existant --------------- */
 function testDep(e) {
