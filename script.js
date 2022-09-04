@@ -115,7 +115,7 @@ function majCompteur() {
 /* ------------------------- gestion du chronometre ------------------------- */
 
 var min = 10
-var sec = 1 // une seconde de plus pour afficher les 10 min au depart
+var sec = 0
 
 function updateTime () {
     // on enleve une seconde au chronomètre
@@ -128,7 +128,10 @@ function updateTime () {
         min -= 1
     }
 
-    //affichage du chrono
+    afficherChrono()
+}
+
+function afficherChrono() {
     if (sec < 10) {
         document.getElementById("chrono").innerHTML = min + " : 0" + sec
     }
@@ -206,7 +209,8 @@ function demarrerQuizz() {
     }
 
     min = 10
-    sec = 1
+    sec = 0
+    afficherChrono()
     chrono = setInterval(updateTime, 1000)
 }
 
