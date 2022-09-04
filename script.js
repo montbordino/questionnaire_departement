@@ -148,15 +148,21 @@ map.addEventListener('mousedown', e =>{
 })
 
 function demarrerQuizz() {
-    if (document.getElementById("btn-demarrage").getAttribute("class") != "invisible"){
-        document.getElementById("btn-demarrage").setAttribute("class", "invisible")
-        document.getElementById("caseRep").setAttribute("class", "")
+    // si le quizz n'a encore jamais été lancé
+    if (document.getElementById("btn-demarrage").getAttribute("class") === ""){
+        document.getElementById("btn-demarrage").setAttribute("class", "invisible") // btn-demarrage passe invisible
+        document.getElementById("caseRep").setAttribute("class", "")                // caseRep passe visible
     }
+    // le quizz a deja été lancé
     else {
-        document.getElementById("btn-demarrage").setAttribute("class", "invisible")
-        document.getElementById("caseRep").setAttribute("class", "")
+        document.getElementById("btn-recommencer").setAttribute("class", "invisible")   // btn-recommencer passe invisible
+        document.getElementById("btn-demarrage").setAttribute("class", "invisible")   // btn-demarrage passe invisible
+        document.getElementById("caseRep").setAttribute("class", "")                    // case rep passe visible
         dep_trouve = 0
-        departements.forEach(e =>{ e.target.setAttribute("class", "hide")})
+        majCompteur()
+        Object.keys(dict_dep).forEach(dep =>{ 
+            document.getElementById(dep).setAttribute("class", "hide")
+        })
     }
 }
 
@@ -167,7 +173,8 @@ function testDep(e) {
     let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/-/ig, " ").toLowerCase()
     Object.keys(dict_dep).every(dep => {
         if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/-/ig, " ").replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
-            document.getElementById(dep).SetAttribute("class", "show")
+            console.log(dep)
+            document.getElementById(dep).setAttribute("class", "show")
             dep_trouve += 1
             input.value = ""
             majCompteur()
@@ -177,7 +184,7 @@ function testDep(e) {
     })
     
     if (dep_trouve === dep_max){
-        document.getElementById("btn-demarrage").setAttribute("class", "invisible")
+        document.getElementById("caseRep").setAttribute("class", "invisible")
         document.getElementById("btn-recommencer").setAttribute("class", "")
     }
 }
