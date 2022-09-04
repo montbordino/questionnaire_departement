@@ -52,7 +52,7 @@ h2, button {
 
 /* --------------------------------- boutons -------------------------------- */
 
-button{
+#btn-demarrage, #btn-recommencer{
     padding: 16.5px;
     background-color: chartreuse;
     margin: 20px 0;
@@ -60,8 +60,20 @@ button{
     font-weight: bold;
 }
 
-button:hover{
+#btn-demarrage:hover, #btn-recommencer:hover{
     box-shadow: chartreuse 0 0 10px ;
+}
+
+#btn-container > button{
+    padding: 12.5px;
+    border-radius: 100%;
+    position: relative;
+    top: calc(-40px + 12.5px);
+    margin: 0 5px;
+}
+
+#btn-container > button:hover{
+    border-color: chartreuse;
 }
 
 /* ---------------------------------- input --------------------------------- */
