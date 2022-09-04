@@ -7,13 +7,15 @@
 </head>
 <body>
     <h1>trouves tous les départements français pour gagner !</h1>
-    <div id="chrono"></div>
     <button id="btn-demarrage" onmousedown="demarrerQuizz()">Démarrer le Quizz</button>
     <button id="btn-recommencer" class="invisible" onmousedown="demarrerQuizz()">Refaire le Quizz</button>
     <div id="caseRep" class="invisible">
-        <h2> rentrez votre réponse ici :</h2>
-        <input id = "reponse">
-        <p id="compteur"></p>
+        <div id="chrono"></div>
+        <div id="bloc-droite">
+            <h2> rentrez votre réponse ici :</h2>
+            <input id = "reponse">
+            <p id="compteur"></p>
+        </div>
     </div>
     <div id="map-container">
         <svg id="carte" viewBox="0 0 614 586" xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">

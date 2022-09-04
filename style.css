@@ -29,28 +29,27 @@ h2{
     font-weight: bold;
 }
 
-#caseRep{
-    margin: 10px;
-}
-
 h2, button {
     font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* -------------------------------------------------------------------------- */
-/*                             boutons et inputs                              */
+/*                          boutons, input et chrono                          */
 /* -------------------------------------------------------------------------- */
 
-input
-{
-    height: 26px;
-    width: 216.32px;
-    margin: 5px 0;
+#caseRep{
+    margin: 10px;
 }
 
 .invisible {
     display: none;
 }
+
+#caseRep div {
+    display: inline-block;
+}
+
+/* --------------------------------- boutons -------------------------------- */
 
 button{
     padding: 16.5px;
@@ -60,8 +59,25 @@ button{
     font-weight: bold;
 }
 
-button{
+button:hover{
     box-shadow: chartreuse 0 0 10px ;
+}
+
+/* ---------------------------------- input --------------------------------- */
+
+input
+{
+    height: 26px;
+    width: 216.32px;
+    margin: 5px 0;
+}
+
+/* --------------------------------- chrono --------------------------------- */
+
+#chrono.enMarche {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 5px;
 }
 
 /* -------------------------------------------------------------------------- */

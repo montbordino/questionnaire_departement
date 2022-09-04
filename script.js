@@ -114,8 +114,16 @@ function majCompteur() {
 
 /* ------------------------- gestion du chronometre ------------------------- */
 
-var min = 10
-var sec = 0
+var min
+var sec
+
+function demarrerChrono() {
+    document.getElementById("chrono").setAttribute("class", "enMarche")
+    min = 10
+    sec = 0
+    afficherChrono()
+    chrono = setInterval(updateTime, 1000)
+}
 
 function updateTime () {
     // on enleve une seconde au chronomètre
@@ -207,11 +215,7 @@ function demarrerQuizz() {
             document.getElementById(dep).setAttribute("class", "hide")
         })
     }
-
-    min = 10
-    sec = 0
-    afficherChrono()
-    chrono = setInterval(updateTime, 1000)
+    demarrerChrono()
 }
 
 /* ----------------- verifie l'input lors de la modification ---------------- */
