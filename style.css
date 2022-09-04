@@ -60,6 +60,11 @@ input
 #map-container path{
     fill: orange;
     stroke: black;
+    stroke-width: 0.5px;
+}
+
+#map-container.zoom path{
+    stroke-width: 0.3px;
 }
 
 #map-container .show{

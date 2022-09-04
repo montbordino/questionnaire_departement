@@ -1,8 +1,7 @@
 const map = document.querySelector("#carte")
 var departements = map.querySelectorAll("path")
 const input = document.querySelector('input')
-
-var zoom = false
+const container = document.getElementById("map-container")
 
 // dict_dep est créé dans le but de relier les numéros de département à leur noms
 let dict_dep = {
@@ -134,9 +133,9 @@ majCompteur()
 input.addEventListener('input', testDep);
 
 map.addEventListener('mousedown', e =>{
-    if (zoom){
+    if (container.getAttribute("class") == "zoom"){
         map.setAttribute("viewBox", "0 0 614 586")
-        zoom = false
+        container.setAttribute("class", "")
     }
     else{
         var map_pos = map.getBoundingClientRect() // stock les informations de positionnement de la carte
@@ -144,7 +143,7 @@ map.addEventListener('mousedown', e =>{
         var coordY = e.clientY - map_pos.top // coord Y de la souris relativement à la carte
         var newVB = (coordX - 75).toString().concat(" ", coordY - 68.75).concat(" ", "144.07 137.5") // 614 & 586 * 0.23.5 = 144.07 & 137.5 (pour le zoom)
         map.setAttribute("viewBox", newVB)
-        zoom = true
+        container.setAttribute("class", "zoom")
     }
 })
 
