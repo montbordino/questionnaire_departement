@@ -142,7 +142,7 @@ map.addEventListener('mousedown', e =>{
         var map_pos = map.getBoundingClientRect() // stock les informations de positionnement de la carte
         var coordX = e.clientX - map_pos.left // coord X de la souris relativement à la carte
         var coordY = e.clientY - map_pos.top // coord Y de la souris relativement à la carte
-        var newVB = (coordX - 75).toString().concat(" ", coordY - 68.75).concat(" ", "150 137.5")
+        var newVB = (coordX - 75).toString().concat(" ", coordY - 68.75).concat(" ", "144.07 137.5") // 614 & 586 * 0.23.5 = 144.07 & 137.5 (pour le zoom)
         map.setAttribute("viewBox", newVB)
         zoom = true
     }
