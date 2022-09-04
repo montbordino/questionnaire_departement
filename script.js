@@ -147,7 +147,11 @@ map.addEventListener('mousedown', e =>{
     }
 })
 
-demarrerQuizz()
+function demarrerQuizz() {
+    document.getElementById("btn-demarrage").setAttribute("class", "invisible")
+    document.getElementById("caseRep").setAttribute("class", "")
+    
+}
 
 /* ---------------- verifie si le contenant de l'input correspond à un département existant --------------- */
 function testDep(e) {
@@ -156,7 +160,7 @@ function testDep(e) {
     let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/-/ig, " ").toLowerCase()
     Object.keys(dict_dep).every(dep => {
         if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/-/ig, " ").replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
-            document.getElementById(dep).sSetAttribute("class", "show")
+            document.getElementById(dep).SetAttribute("class", "show")
             dep_trouve += 1
             input.value = ""
             majCompteur()
