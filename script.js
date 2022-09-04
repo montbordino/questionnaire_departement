@@ -147,6 +147,8 @@ map.addEventListener('mousedown', e =>{
     }
 })
 
+demarrerQuizz()
+
 /* ---------------- verifie si le contenant de l'input correspond à un département existant --------------- */
 function testDep(e) {
     // normalize sépare les lettres de leurs accent é => e + '
@@ -154,7 +156,7 @@ function testDep(e) {
     let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/-/ig, " ").toLowerCase()
     Object.keys(dict_dep).every(dep => {
         if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/-/ig, " ").replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
-            document.getElementById(dep).setAttribute("class", "show")
+            document.getElementById(dep).sSetAttribute("class", "show")
             dep_trouve += 1
             input.value = ""
             majCompteur()
