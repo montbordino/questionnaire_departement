@@ -88,6 +88,10 @@ button{
     fill: green;
 }
 
+#map-container .lost{
+    fill: red;
+}
+
 #carte{
     border: solid black 1px;
     background-color: rgb(65, 65, 243);

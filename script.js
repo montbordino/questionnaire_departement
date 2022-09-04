@@ -1,7 +1,7 @@
-const map = document.querySelector("#carte")
-var departements = map.querySelectorAll("path")
-const input = document.querySelector('input')
-const container = document.getElementById("map-container")
+const MAP = document.querySelector("#carte")
+const INPUT = document.querySelector('input')
+const CONTAINER = document.getElementById("map-container")
+var departements = MAP.querySelectorAll("path")
 
 // dict_dep est créé dans le but de relier les numéros de département à leur noms
 let dict_dep = {
@@ -104,6 +104,7 @@ let dict_dep = {
 }
 
 /* --------------- variables utilisés pour le conteur de la V1 -------------- */
+
 let dep_trouve = 0
 const dep_max = Object.keys(dict_dep).length
 
@@ -111,18 +112,51 @@ function majCompteur() {
     document.getElementById("compteur").innerHTML = "Trouvés : " + dep_trouve + " / " + dep_max
 }
 
-/* -------- parcours de chaque départements (paths) pour afficher le nom des departements trouvés survolés avec la souris ------- */
-departements.forEach(function(path) {
-    /* pour créer dict_dep (prérequis : création de i à 1)
-    if (path.id == "Corse-du-Sud"){ dict_dep[path.id] = "2A" }
-    else if (path.id == "Haute-Corse"){ dict_dep[path.id] = "2B"; i = 21; }
-    else { dict_dep[path.id] = i; i += 1; }*/
+/* ------------------------- gestion du chronometre ------------------------- */
 
+var min = 10
+var sec = 1 // une seconde de plus pour afficher les 10 min au depart
+
+function updateTime () {
+    // on enleve une seconde au chronomètre
+    sec -= 1
+    if (min == 0 && sec == 0){
+        finPartie()
+    }
+    else if (sec < 0){
+        sec = 59
+        min -= 1
+    }
+
+    //affichage du chrono
+    if (sec < 10) {
+        document.getElementById("chrono").innerHTML = min + " : 0" + sec
+    }
+    else {
+        document.getElementById("chrono").innerHTML = min + " : " + sec
+    }
+}
+
+function finPartie() {
+    clearInterval(chrono) //stop le chrono
+    Object.keys(dict_dep).forEach(dep =>{  // change de classe les départements non trouvé
+        if (document.getElementById(dep).getAttribute("class") === "hide") {
+            document.getElementById(dep).setAttribute("class", "lost")
+        }
+    })
+    
+    document.getElementById("caseRep").setAttribute("class", "invisible")
+    document.getElementById("btn-recommencer").setAttribute("class", "")
+}
+
+/* ---------------- afficher le nom des departements trouvés ---------------- */
+
+departements.forEach(function(path) {
     path.addEventListener('mouseleave', function() {
         document.getElementById("nom").innerHTML = ""
     })
     path.addEventListener('mouseenter', function() {
-        if (path.getAttribute("class") == "show"){
+        if (path.getAttribute("class") != "hide"){
             document.getElementById("nom").innerHTML = path.id
         }
     })
@@ -130,22 +164,26 @@ departements.forEach(function(path) {
 });
 
 majCompteur()
-input.addEventListener('input', testDep);
+INPUT.addEventListener('input', testDep);
 
-map.addEventListener('mousedown', e =>{
-    if (container.getAttribute("class") == "zoom"){
-        map.setAttribute("viewBox", "0 0 614 586")
-        container.setAttribute("class", "")
+/* ----------------- quand la souris est pressé sur la carte ---------------- */
+
+MAP.addEventListener('mousedown', e =>{
+    if (CONTAINER.getAttribute("class") == "zoom"){
+        MAP.setAttribute("viewBox", "0 0 614 586")
+        CONTAINER.setAttribute("class", "")
     }
     else{
-        var map_pos = map.getBoundingClientRect() // stock les informations de positionnement de la carte
+        var map_pos = MAP.getBoundingClientRect() // stock les informations de positionnement de la carte
         var coordX = e.clientX - map_pos.left // coord X de la souris relativement à la carte
         var coordY = e.clientY - map_pos.top // coord Y de la souris relativement à la carte
         var newVB = (coordX - 75).toString().concat(" ", coordY - 68.75).concat(" ", "144.07 137.5") // 614 & 586 * 0.23.5 = 144.07 & 137.5 (pour le zoom)
-        map.setAttribute("viewBox", newVB)
-        container.setAttribute("class", "zoom")
+        MAP.setAttribute("viewBox", newVB)
+        CONTAINER.setAttribute("class", "zoom")
     }
 })
+
+/* ---------------------------- demarrer le quizz --------------------------- */
 
 function demarrerQuizz() {
     // si le quizz n'a encore jamais été lancé
@@ -158,15 +196,22 @@ function demarrerQuizz() {
         document.getElementById("btn-recommencer").setAttribute("class", "invisible")   // btn-recommencer passe invisible
         document.getElementById("btn-demarrage").setAttribute("class", "invisible")   // btn-demarrage passe invisible
         document.getElementById("caseRep").setAttribute("class", "")                    // case rep passe visible
+        
+        //remise a zero des élements modifiés pendant la partie
         dep_trouve = 0
         majCompteur()
         Object.keys(dict_dep).forEach(dep =>{ 
             document.getElementById(dep).setAttribute("class", "hide")
         })
     }
+
+    min = 10
+    sec = 1
+    chrono = setInterval(updateTime, 1000)
 }
 
-/* ---------------- verifie si le contenant de l'input correspond à un département existant --------------- */
+/* ----------------- verifie l'input lors de la modification ---------------- */
+
 function testDep(e) {
     // normalize sépare les lettres de leurs accent é => e + '
     // replace(/\p{Diacritic}/gu supprime tous les accents isolés)
@@ -176,7 +221,7 @@ function testDep(e) {
             console.log(dep)
             document.getElementById(dep).setAttribute("class", "show")
             dep_trouve += 1
-            input.value = ""
+            INPUT.value = ""
             majCompteur()
             return false
         }
@@ -184,7 +229,6 @@ function testDep(e) {
     })
     
     if (dep_trouve === dep_max){
-        document.getElementById("caseRep").setAttribute("class", "invisible")
-        document.getElementById("btn-recommencer").setAttribute("class", "")
+        finPartie()
     }
 }
