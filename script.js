@@ -148,9 +148,16 @@ map.addEventListener('mousedown', e =>{
 })
 
 function demarrerQuizz() {
-    document.getElementById("btn-demarrage").setAttribute("class", "invisible")
-    document.getElementById("caseRep").setAttribute("class", "")
-    
+    if (document.getElementById("btn-demarrage").getAttribute("class") != "invisible"){
+        document.getElementById("btn-demarrage").setAttribute("class", "invisible")
+        document.getElementById("caseRep").setAttribute("class", "")
+    }
+    else {
+        document.getElementById("btn-demarrage").setAttribute("class", "invisible")
+        document.getElementById("caseRep").setAttribute("class", "")
+        dep_trouve = 0
+        departements.forEach(e =>{ e.target.setAttribute("class", "hide")})
+    }
 }
 
 /* ---------------- verifie si le contenant de l'input correspond à un département existant --------------- */
@@ -168,5 +175,9 @@ function testDep(e) {
         }
         return true
     })
+    
+    if (dep_trouve === dep_max){
+        document.getElementById("btn-demarrage").setAttribute("class", "invisible")
+        document.getElementById("btn-recommencer").setAttribute("class", "")
+    }
 }
-

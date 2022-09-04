@@ -52,7 +52,7 @@ input
     display: none;
 }
 
-#btn-demarrage{
+button{
     padding: 16.5px;
     background-color: chartreuse;
     margin: 20px 0;
@@ -60,7 +60,7 @@ input
     font-weight: bold;
 }
 
-#btn-demarrage:hover{
+button{
     box-shadow: chartreuse 0 0 10px ;
 }
 
