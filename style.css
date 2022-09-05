@@ -40,10 +40,12 @@ h2, button {
 #caseRep{
     margin: 10px 0;
     height: 80px;
+    display: inline-block;
+
 }
 
 .invisible {
-    display: none;
+    display: none !important; 
 }
 
 #caseRep div {
@@ -58,6 +60,13 @@ h2, button {
     margin: 20px 0;
     border-radius: 10px;
     font-weight: bold;
+}
+
+#btn-recommencer{
+    display: inline-block;
+    position:relative;
+    margin-bottom: 0px;
+    top: -20px;
 }
 
 #btn-demarrage:hover, #btn-recommencer:hover{

@@ -156,7 +156,7 @@ function finPartie() {
         }
     })
     
-    document.getElementById("caseRep").setAttribute("class", "invisible")
+    document.getElementById("block-droit").setAttribute("class", "invisible")
     document.getElementById("btn-recommencer").setAttribute("class", "")
 }
 
@@ -198,7 +198,7 @@ MAP.addEventListener('mousedown', e =>{
 
 function demarrerQuizz() {
     // si le quizz n'a encore jamais été lancé
-    if (document.getElementById("btn-demarrage").getAttribute("class") === ""){
+    if (document.getElementById("btn-demarrage").getAttribute("class") == "visible"){
         document.getElementById("btn-demarrage").setAttribute("class", "invisible") // btn-demarrage passe invisible
         document.getElementById("caseRep").setAttribute("class", "")                // caseRep passe visible
     }
@@ -206,7 +206,7 @@ function demarrerQuizz() {
     else {
         document.getElementById("btn-recommencer").setAttribute("class", "invisible")   // btn-recommencer passe invisible
         document.getElementById("btn-demarrage").setAttribute("class", "invisible")   // btn-demarrage passe invisible
-        document.getElementById("caseRep").setAttribute("class", "")                    // case rep passe visible
+        document.getElementById("block-droit").setAttribute("class", "")                    // case rep passe visible
         
         //remise a zero des élements modifiés pendant la partie
         dep_trouve = 0
@@ -226,7 +226,6 @@ function testDep(e) {
     let chaine = e.target.value.normalize('NFD').replace(/\p{Diacritic}/gu, "").replace(/-/ig, " ").toLowerCase()
     Object.keys(dict_dep).every(dep => {
         if ( (chaine == dep.toLowerCase().normalize('NFD').replace(/-/ig, " ").replace(/\p{Diacritic}/gu, "")) && (document.getElementById(dep).getAttribute("class") == "hide") ){
-            console.log(dep)
             document.getElementById(dep).setAttribute("class", "show")
             dep_trouve += 1
             INPUT.value = ""
